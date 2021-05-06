@@ -81,13 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
               inputFormatters: [
-                WhitelistingTextInputFormatter(RegExp(r'^\d+\.?\d{0,2}')),
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
               ],
                 //onChanged: updateNome,
                 decoration: InputDecoration(
                     labelText: "Altura (metros Ex: 1.70)",
-
-
                 ),
               ),
               TextFormField(
@@ -96,23 +94,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
                  inputFormatters: [
-                  WhitelistingTextInputFormatter(RegExp(r'^\d+\.?\d{0,2}')),
+                   FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
                 ],
                 //onChanged: updateNome,
                 decoration: InputDecoration(
                   labelText: "Peso (Kilos Ex: 80)",
-
-
                 ),
               ),
               SizedBox(
                   width: double.infinity,
-
-                  child: Text(
-
-                    '$_result',
+                 child: Text(
+                   '$_result',
                     style: Theme.of(context).textTheme.headline5,
-
                     textAlign: TextAlign.center,
                   ),
               ),
