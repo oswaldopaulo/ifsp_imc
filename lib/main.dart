@@ -76,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Caculadora IMC'),
+
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
