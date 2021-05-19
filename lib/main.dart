@@ -30,12 +30,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   final TextAltura = TextEditingController();
   final TextPeso = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   String _result = "";
   String _msg = "";
 
+  void _limpar(){
+    setState(() {
+        TextAltura.clear();
+        TextPeso.clear();
+        _result ="";
+        _msg = "";
+
+    });
+  }
   void _imc(double altura, double peso) {
 
 
@@ -66,6 +76,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Caculadora IMC'),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                    _limpar();
+                },
+                child: Icon(
+                  Icons.delete,
+                  size: 26.0,
+                ),
+              )
+          ),
+
+        ],
+
       ),
       body: Form(
         key: _formkey,
@@ -75,6 +101,22 @@ class _MyHomePageState extends State<MyHomePage> {
             spacing: 20,
             runSpacing: 10,
             children: <Widget>[
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Entre com sua altura e peso',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.blue
+                    ),
+                    textAlign: TextAlign.center,
+
+                  ),
+                ),
+
+              ),
               TextFormField(
                 controller: TextAltura,
                 validator: alturaValidador(),
