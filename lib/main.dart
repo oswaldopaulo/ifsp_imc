@@ -34,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextAltura = TextEditingController();
   final TextPeso = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+  Color _msgColor = Colors.black;
   String _result = "";
   String _msg = "";
 
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         TextPeso.clear();
         _result ="";
         _msg = "";
+        _msgColor = Colors.black;
 
     });
   }
@@ -55,18 +57,24 @@ class _MyHomePageState extends State<MyHomePage> {
       _result = "Seu imc é " + (res).toStringAsPrecision(4);
       if (res.clamp(0.00, 18.49) == res) {
         _msg = "Voce esta abaixo do peso";
+        _msgColor = Colors.lightBlue;
 
       } else if(res.clamp(18.50, 24.99) == res){
         _msg = "Peso Normal";
+        _msgColor = Colors.green;
       } else if(res.clamp(25.00, 29.99) == res){
         _msg = "Sobre Peso";
+        _msgColor = Colors.amber;
       } else if(res.clamp(30.00, 34.99) == res){
         _msg = "Obesidade Grau I";
+        _msgColor = Colors.deepOrangeAccent;
       } else if(res.clamp(35.00, 39.99) == res){
         _msg = "Obesidade Severa Grau II";
+        _msgColor = Colors.redAccent;
       }
       else if(res > 40.00){
         _msg = "Obesidade Mórbida Grau III";
+        _msgColor = Colors.redAccent.shade700;
       }
     });
 
@@ -106,10 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: double.infinity,
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: Text(
+                     child: Text(
                     'Entre com sua altura e peso',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: Theme.of(context).textTheme.headline6.fontSize,
                       color: Colors.blue
                     ),
                     textAlign: TextAlign.center,
@@ -144,6 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   labelText: "Peso (Kilos Ex: 80)",
                 ),
               ),
+
               SizedBox(
                   width: double.infinity,
                  child: Text(
@@ -155,9 +164,11 @@ class _MyHomePageState extends State<MyHomePage> {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-
                   '$_msg',
-                  style: Theme.of(context).textTheme.headline5,
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.headline5.fontSize,
+                    color: _msgColor,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
